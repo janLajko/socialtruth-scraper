@@ -3814,3 +3814,43 @@ Error: Failed to obtain Truth Social token: Failed to perform, curl: (28) Connec
 /Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
 /Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
 /Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+/Users/jan/Documents/7788/soical-sraper/run_scraper.sh: line 9: */5: No such file or directory
+Debug: token request failed with status 0, body: 
+Error: Failed to obtain Truth Social token: Failed to perform, curl: (35) TLS connect error: error:00000000:invalid library (0):OPENSSL_internal:invalid library (0). See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+Latest post already delivered to Lark; skipping.
+[{"id": "115437112529618205", "url": "https://truthsocial.com/@realDonaldTrump/115437112529618205", "created_at": "2025-10-25T22:15:50.076Z", "language": "en", "text": "I am on my way to Malaysia, where I will sign the great Peace Deal, which I proudly brokered between Cambodia and Thailand. Sadly, the Queen Mother of Thailand has just passed away. I send my condolences to the Great People of Thailand. I will be seeing their wonderful Prime Minister when we land. In order to accommodate everyone for this major event, we will be signing the Peace Deal immediately upon arrival. See you soon! President DJT", "raw_html": "<p>I am on my way to Malaysia, where I will sign the great Peace Deal, which I proudly brokered between Cambodia and Thailand. Sadly, the Queen Mother of Thailand has just passed away. I send my condolences to the Great People of Thailand. I will be seeing their wonderful Prime Minister when we land. In order to accommodate everyone for this major event, we will be signing the Peace Deal immediately upon arrival. See you soon! President DJT</p>", "replies_count": 1876, "reblogs_count": 4782, "favorites_count": 20590, "media": []}]

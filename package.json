@@ -1,0 +1,26 @@
+{
+  "name": "soical-sraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "application.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janLajko/socialtruth-scraper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/janLajko/socialtruth-scraper/issues"
+  },
+  "homepage": "https://github.com/janLajko/socialtruth-scraper#readme",
+  "dependencies": {
+    "axios": "^1.12.2",
+    "express": "^5.1.0",
+    "puppeteer": "^24.26.1"
+  }
+}
