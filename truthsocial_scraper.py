@@ -62,6 +62,18 @@ class TruthSocialClient:
             )
             resp.raise_for_status()
         except requests.RequestsError as exc:
+            response = getattr(exc, "response", None)
+            status = getattr(response, "status_code", "unknown")
+            body = ""
+            if response is not None:
+                try:
+                    body = response.text[:600]
+                except Exception:
+                    body = "<unable to read body>"
+            print(
+                f"Debug: token request failed with status {status}, body: {body}",
+                file=sys.stderr,
+            )
             raise RuntimeError(f"Failed to obtain Truth Social token: {exc}") from exc
 
         data: Dict[str, Any] = resp.json()
