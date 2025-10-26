@@ -1,3 +1,5 @@
+cfscrape @ git+https://github.com/Anorov/cloudflare-scrape.git
+
 curl_cffi>=0.13.0
 
 # selenium>=4.0.0

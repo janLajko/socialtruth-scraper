@@ -12,9 +12,9 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-import cfscrape
 import requests
 from bs4 import BeautifulSoup
+from curl_cffi import requests as ts_requests
 
 BASE_URL = "https://truthsocial.com"
 API_BASE_URL = f"{BASE_URL}/api"
@@ -23,16 +23,17 @@ USER_AGENT = (
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 )
 
-scraper = cfscrape.create_scraper(delay=5)
-scraper.headers.update({"User-Agent": USER_AGENT, "Accept": "application/json"})
+ts_session = ts_requests.Session()
+ts_session.headers.update({"User-Agent": USER_AGENT, "Accept": "application/json"})
 
 
 def lookup_account(username: str) -> Dict[str, Any]:
     """Resolve a Truth Social username to an account payload."""
-    resp = scraper.get(
+    resp = ts_session.get(
         f"{API_BASE_URL}/v1/accounts/lookup",
         params={"acct": username},
         timeout=20,
+        impersonate="chrome120",
     )
     resp.raise_for_status()
     return resp.json()
@@ -40,10 +41,11 @@ def lookup_account(username: str) -> Dict[str, Any]:
 
 def fetch_latest_status(account_id: str) -> Optional[Dict[str, Any]]:
     """Fetch only the most recent status for an account id."""
-    resp = scraper.get(
+    resp = ts_session.get(
         f"{API_BASE_URL}/v1/accounts/{account_id}/statuses",
         params={"exclude_replies": "true", "limit": 1},
         timeout=20,
+        impersonate="chrome120",
     )
     resp.raise_for_status()
     data = resp.json()
@@ -169,7 +171,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     try:
         account = lookup_account(args.username)
         latest = fetch_latest_status(str(account["id"]))
-    except requests.RequestException as exc:
+    except ts_requests.RequestsError as exc:
         print(f"Error fetching posts: {exc}", file=sys.stderr)
         return 1
 
