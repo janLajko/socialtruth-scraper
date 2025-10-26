@@ -1,0 +1,1 @@
+*/5 * * * * /usr/bin/env PATH=/usr/local/bin:/usr/bin python3 /绝对路径/truthsocial_scraper.py --limit 1 --lark-webhook https://open.feishu.cn/open-apis/bot/v2/hook/XXXX --state-file ~/.truthsocial_state.json >> /var/log/truthsocial_scraper.log 2>&1

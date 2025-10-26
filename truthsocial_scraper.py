@@ -15,6 +15,7 @@ import sys
 import os
 from html import unescape
 from typing import Any, Dict, List, Optional
+from pathlib import Path
 
 from curl_cffi import requests
 
@@ -164,11 +165,35 @@ def fetch_latest_truths(
     return [simplify_status(status) for status in statuses[:limit]]
 
 
+def load_last_sent_id(state_file: Path) -> Optional[str]:
+    """Read the stored last sent status id, if the file exists."""
+    try:
+        data = json.loads(state_file.read_text(encoding="utf-8"))
+        value = data.get("last_id")
+        return str(value) if value is not None else None
+    except FileNotFoundError:
+        return None
+    except (json.JSONDecodeError, OSError) as exc:
+        print(f"Warning: unable to read state file {state_file}: {exc}", file=sys.stderr)
+        return None
+
+
+def save_last_sent_id(state_file: Path, status_id: str) -> None:
+    """Persist the most recent status id to the given path."""
+    try:
+        if state_file.parent and not state_file.parent.exists():
+            state_file.parent.mkdir(parents=True, exist_ok=True)
+        state_file.write_text(json.dumps({"last_id": status_id}), encoding="utf-8")
+    except OSError as exc:
+        print(f"Warning: unable to write state file {state_file}: {exc}", file=sys.stderr)
+
+
 def send_to_lark(
     posts: List[Dict[str, Any]],
     webhook_url: str,
     *,
     username: str,
+    state_file: Optional[Path] = None,
 ) -> None:
     """Send the latest post to a Lark (Feishu) incoming webhook."""
     if not posts:
@@ -176,6 +201,13 @@ def send_to_lark(
         return
 
     latest = posts[0]
+    latest_id = str(latest.get("id", "")).strip()
+
+    prior_id = load_last_sent_id(state_file) if state_file else None
+    if prior_id and latest_id == prior_id:
+        print("Latest post already delivered to Lark; skipping.")
+        return
+
     text_body = latest.get("text") or "[Post contains only media or formatting]"
 
     segments = [
@@ -212,6 +244,8 @@ def send_to_lark(
         raise RuntimeError(f"Failed to deliver message to Lark: {exc}") from exc
 
     print("Sent latest post to Lark successfully.")
+    if state_file:
+        save_last_sent_id(state_file, latest_id)
 
 
 def parse_args(argv: List[str]) -> argparse.Namespace:
@@ -252,6 +286,12 @@ def parse_args(argv: List[str]) -> argparse.Namespace:
         help="Environment variable to read the webhook URL from when --lark-webhook is empty "
         "(default: LARK_WEBHOOK_URL). Use an empty string to disable env lookup.",
     )
+    parser.add_argument(
+        "--state-file",
+        default="truthsocial_last_id.json",
+        help="Path to store the last sent status id for de-duplication "
+        "(default: truthsocial_last_id.json). Use empty string to disable persistence.",
+    )
     return parser.parse_args(argv)
 
 
@@ -269,7 +309,15 @@ def main(argv: List[str]) -> int:
         if not webhook_url and args.lark_webhook_env:
             webhook_url = os.getenv(args.lark_webhook_env)
         if webhook_url:
-            send_to_lark(posts, webhook_url, username=args.username)
+            state_path: Optional[Path] = None
+            if args.state_file:
+                state_path = Path(args.state_file).expanduser()
+            send_to_lark(
+                posts,
+                webhook_url,
+                username=args.username,
+                state_file=state_path,
+            )
     except Exception as exc:  # noqa: BLE001
         print(f"Error: {exc}", file=sys.stderr)
         return 1
